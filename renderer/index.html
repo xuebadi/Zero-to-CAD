@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学霸帝 Zero-to-CAD</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <!-- 顶部栏 -->
+    <header class="titlebar">
+      <div class="titlebar-drag"></div>
+      <div class="titlebar-content">
+        <div class="logo-group">
+          <div class="logo-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="2" y="2" width="24" height="24" rx="6" fill="url(#logo-grad)" />
+              <path d="M8 14L12 10L16 14L12 18Z" fill="white" opacity="0.9"/>
+              <path d="M14 8L18 12L14 16L10 12Z" fill="white" opacity="0.5"/>
+              <defs>
+                <linearGradient id="logo-grad" x1="2" y1="2" x2="26" y2="26">
+                  <stop stop-color="#00d4aa"/>
+                  <stop offset="1" stop-color="#0088ff"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <h1 class="app-title">学霸帝 <span class="title-sub">Zero-to-CAD</span></h1>
+        </div>
+        <div class="titlebar-status">
+          <div class="status-dot" id="statusDot"></div>
+          <span class="status-text" id="statusText">正在连接...</span>
+        </div>
+        <div class="titlebar-actions">
+          <button class="btn-ghost" id="btnHelp" title="帮助">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+      <!-- 左侧面板：输入 -->
+      <section class="panel panel-input">
+        <div class="panel-header">
+          <h2 class="panel-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            输入视图
+          </h2>
+          <button class="btn-action" id="btnSelectImages">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            上传图片
+          </button>
+        </div>
+        
+        <div class="views-grid" id="viewsGrid">
+          <div class="view-slot empty" data-index="0">
+            <div class="slot-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>正面 1</span>
+            </div>
+          </div>
+          <div class="view-slot empty" data-index="1">
+            <div class="slot-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>正面 2</span>
+            </div>
+          </div>
+          <div class="view-slot empty" data-index="2">
+            <div class="slot-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>正面 3</span>
+            </div>
+          </div>
+          <div class="view-slot empty" data-index="3">
+            <div class="slot-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>正面 4</span>
+            </div>
+          </div>
+          <div class="view-slot empty" data-index="4">
+            <div class="slot-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>背面 1</span>
+            </div>
+          </div>
+          <div class="view-slot empty" data-index="5">
+            <div class="slot-placeholder">
+              <svg width="32" height="32" viewBox="0 0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>背面 2</span>
+            </div>
+          </div>
+          <div class="view-slot empty" data-index="6">
+            <div class="slot-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>背面 3</span>
+            </div>
+          </div>
+          <div class="view-slot empty" data-index="7">
+            <div class="slot-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>背面 4</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-footer">
+          <div class="prompt-group">
+            <label class="prompt-label">提示词</label>
+            <textarea class="prompt-input" id="promptInput" rows="2" placeholder="生成这个形状的CadQuery代码。">生成这个形状的CadQuery代码。</textarea>
+          </div>
+          <button class="btn-generate" id="btnGenerate" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>生成 CAD</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 右侧面板：输出 -->
+      <section class="panel panel-output">
+        <div class="panel-header">
+          <h2 class="panel-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            CadQuery 代码
+          </h2>
+          <div class="output-actions">
+            <button class="btn-ghost" id="btnCopy" title="复制代码">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制
+            </button>
+            <button class="btn-ghost" id="btnSave" title="保存代码">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              保存
+            </button>
+          </div>
+        </div>
+        
+        <div class="code-area" id="codeArea">
+          <div class="code-placeholder" id="codePlaceholder">
+            <div class="placeholder-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.15"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <p class="placeholder-text">上传多视图渲染图片</p>
+            <p class="placeholder-sub">AI 将自动生成 CadQuery Python 代码</p>
+          </div>
+          <pre class="code-block" id="codeBlock" style="display:none;"><code id="codeContent"></code></pre>
+        </div>
+
+        <!-- 加载动画 -->
+        <div class="loading-overlay" id="loadingOverlay" style="display:none;">
+          <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+          </div>
+          <p class="loading-text">正在生成 CAD 代码...</p>
+          <p class="loading-sub" id="loadingTimer">0s</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- 底部栏 -->
+    <footer class="footer">
+      <div class="footer-left">
+        <span class="footer-badge">Qwen3-VL-2B</span>
+        <span class="footer-sep">·</span>
+        <span id="footerDevice">CPU</span>
+        <span class="footer-sep">·</span>
+        <span id="footerImages">0 张图片</span>
+      </div>
+      <div class="footer-right">
+        <span>学霸帝 Zero-to-CAD v1.0.0</span>
+        <span class="footer-sep">·</span>
+        <span>Powered by Autodesk AI Lab</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 帮助弹窗 -->
+  <div class="modal-overlay" id="helpModal" style="display:none;">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>关于 学霸帝 Zero-to-CAD</h3>
+        <button class="btn-close" id="btnCloseHelp">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>学霸帝 Zero-to-CAD</strong> 是一个基于 AI 视觉语言模型的 CAD 代码生成器。</p>
+        <div class="help-section">
+          <h4>如何使用</h4>
+          <ol>
+            <li>上传 3D 形状的多视图渲染图片（建议8张：4正面 + 4背面）</li>
+            <li>可选修改提示词</li>
+            <li>点击「生成 CAD」按钮</li>
+            <li>AI 将自动生成可执行的 CadQuery Python 代码</li>
+            <li>复制或保存生成的代码，用 CadQuery 执行</li>
+          </ol>
+        </div>
+        <div class="help-section">
+          <h4>模型信息</h4>
+          <ul>
+            <li>基础模型：Qwen3-VL-2B-Instruct</li>
+            <li>微调数据：Zero-to-CAD 1M（97.9万合成样本）</li>
+            <li>输入：8张 256×256 渲染视图</li>
+            <li>输出：可执行的 CadQuery Python 代码</li>
+            <li>论文：arXiv:2604.24479</li>
+          </ul>
+        </div>
+        <div class="help-section">
+          <h4>安装 CadQuery</h4>
+          <pre>pip install cadquery</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
